@@ -23,4 +23,9 @@ public class SayHelloController {
         sb.append("</html");
         return sb.toString();
     }
+
+    @RequestMapping("say-hello-jsp")
+    public String sayHelloJsp(){
+        return "sayHello";
+    }
 }
