@@ -48,4 +48,10 @@ public class TodoController {
         todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";
     }
+
+    @RequestMapping(value="delete-todo")
+    public String deleteTodo(@RequestParam int id){
+        todoService.deleteById(id);
+        return "redirect:list-todos";
+    }
 }
