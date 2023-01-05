@@ -1,21 +1,20 @@
 package com.sampleapp.springboot.myfirstwebapp.todo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Todo {
     private int id;
     private String username;
     private String description;
     private LocalDate targetDate;
-    private boolean date;
+    private boolean done;
 
-    public Todo(int id, String username, String description, LocalDate targetDate, boolean date) {
+    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.targetDate = targetDate;
-        this.date = date;
+        this.done = done;
     }
 
     public int getId() {
@@ -50,12 +49,12 @@ public class Todo {
         this.targetDate = targetDate;
     }
 
-    public boolean isDate() {
-        return date;
+    public boolean isDone() {
+        return done;
     }
 
-    public void setDate(boolean date) {
-        this.date = date;
+    public void setDate(boolean done) {
+        this.done = done;
     }
 
     @Override
@@ -65,7 +64,7 @@ public class Todo {
                 ", username='" + username + '\'' +
                 ", description='" + description + '\'' +
                 ", targetDate=" + targetDate +
-                ", date=" + date +
+                ", done=" + done +
                 '}';
     }
 }
