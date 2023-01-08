@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+//@Controller
 @SessionAttributes("name")
-public class TodoController {
+public class TodoControllerWithoutH2 {
 
-    public TodoController(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+    public TodoControllerWithoutH2(TodoService todoService) {
+        this.todoService = todoService;
     }
-    private TodoRepository todoRepository;
+
+    private TodoService todoService;
 
 
     //list-todos
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model){
-        //List<Todo> todos = todoService.findByUsername(getLoggedInName());
-        List<Todo> todos = todoRepository.findByUsername(getLoggedInName());
+        List<Todo> todos = todoService.findByUsername(getLoggedInName());
         model.put("todos", todos);
         return "listTodos";
     }
@@ -48,19 +48,19 @@ public class TodoController {
         }
         String username = (String) map.get("name");
         todo.setUsername(username);
-        todoRepository.save(todo);
+        todoService.addTodo(todo.getUsername(), todo.getDescription(), todo.getTargetDate(), false);
         return "redirect:list-todos";
     }
 
     @RequestMapping(value="delete-todo")
     public String deleteTodo(@RequestParam int id){
-        todoRepository.deleteById(id);
+        todoService.deleteById(id);
         return "redirect:list-todos";
     }
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String updateTodoPage(@RequestParam int id, ModelMap model){
-        Todo todo = todoRepository.getById(id);
+        Todo todo = todoService.getById(id);
         model.addAttribute("todo", todo);
         return "todo";
     }
@@ -72,7 +72,7 @@ public class TodoController {
         }
         String username = (String) model.get("name");
         todo.setUsername(username);
-        todoRepository.save(todo);
+        todoService.updateById(todo);
         return "redirect:list-todos";
     }
 

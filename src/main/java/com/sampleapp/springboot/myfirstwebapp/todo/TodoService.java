@@ -13,11 +13,11 @@ public class TodoService {
     private static List<Todo> todos = new ArrayList<>();
     private static int todoCount = 0;
     static {
-        todos.add(new Todo(++todoCount, "in28Minutes", "Learn AWS", LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Devops", LocalDate.now().plusYears(2), false));
-        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Full Stack Developer", LocalDate.now().plusYears(3), false));
-        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Spring Boot", LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(++todoCount, "in28Minutes", "Learn DSA", LocalDate.now().plusYears(1), false));
+        todos.add(new Todo(++todoCount, "in28Minutes", "Learn AWS - static", LocalDate.now().plusYears(1), false));
+        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Devops - static", LocalDate.now().plusYears(2), false));
+        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Full Stack Developer - static", LocalDate.now().plusYears(3), false));
+        todos.add(new Todo(++todoCount, "in28Minutes", "Learn Spring Boot - static", LocalDate.now().plusYears(1), false));
+        todos.add(new Todo(++todoCount, "in28Minutes", "Learn DSA - static", LocalDate.now().plusYears(1), false));
     }
     public List<Todo> findByUsername(String username){
         Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
