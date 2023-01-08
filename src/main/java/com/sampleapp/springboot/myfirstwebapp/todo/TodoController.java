@@ -1,6 +1,8 @@
 package com.sampleapp.springboot.myfirstwebapp.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -26,7 +28,7 @@ public class TodoController {
     //list-todos
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model){
-        List<Todo> todos = todoService.findByUsername("abc");
+        List<Todo> todos = todoService.findByUsername(getLoggedInName());
         model.put("todos", todos);
         return "listTodos";
     }
@@ -71,5 +73,10 @@ public class TodoController {
         todo.setUsername(username);
         todoService.updateById(todo);
         return "redirect:list-todos";
+    }
+
+    public String getLoggedInName(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 }

@@ -17,7 +17,7 @@ public class SpringSecurityConfiguration {
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
         UserDetails userDetails = User.builder()
                 .passwordEncoder(passwordEncoder)
-                .username("sheetal")
+                .username("in28Minutes")
                 .password("dummy")
                 .roles("USER", "ADMIN")
                 .build();
